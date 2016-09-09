@@ -5,8 +5,8 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<meta name="author" content="Doc Writer">
-<title>Hello, AsciiDoc!</title>
+<meta name="author" content="Gustavo Laires Albuquerque Costa &lt;gustavolaires@hotmail.com&gt;">
+<title>DCA0445: Porcessamento Digital de Imagens</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -420,36 +420,60 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Hello, AsciiDoc!</h1>
+<h1>DCA0445: Porcessamento Digital de Imagens</h1>
 <div class="details">
-<span id="author" class="author">Doc Writer</span><br>
-<span id="email" class="email"><a href="mailto:doc@example.com">doc@example.com</a></span><br>
+<span id="author" class="author">Gustavo Laires Albuquerque Costa &lt;gustavolaires@hotmail.com&gt;</span><br>
 </div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>TESTE 1.</p>
-</div>
-</div>
-</div>
 <div class="sect1">
-<h2 id="_seção_1">Seção 1</h2>
+<h2 id="_lista_de_exercícios_unidade_i">Lista de Exercícios: Unidade I</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>item 10</p>
-</li>
-<li>
-<p>item 20</p>
-</li>
-</ul>
+<div class="sect2">
+<h3 id="_manipulando_pixels_em_uma_imagem">Manipulando pixels em uma imagem</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p><strong>1 - CRIANDO REGIÕES NEGATIVAS</strong></p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>O programa desenvolvido recebe como entrada uma imagem e dois pontos com as coordenadas dentro da região da figura, (x, y) e (x1, y1). O efeito negativo é obtido através da mudança de valores dos pixels na região compreendida entre os pontos passados como entrada. A mudança dos valores é feito com base no complemento de 225, ou seja, o valor final do pixel vai ser igual ao valor 255 menos o valor inicial.</p>
+</dd>
+</dl>
 </div>
-<div class="listingblock">
+</dd>
+</dl>
+</div>
+<div class="imageblock">
 <div class="content">
-<pre class="highlight"><code class="language-ruby" data-lang="ruby">puts "Hello, World!"</code></pre>
+<img src="original.png" alt="original">
+</div>
+<div class="title">Figura 1: Imagem original</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>A imagem será varrida executando a mudança de valores dos pixels dentro da região compreendida entre os pontos passados.</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="negativo.png" alt="negativo">
+</div>
+<div class="title">Figura 2: Imagem aplicada o negativo</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p><strong>2 - TROCANDO REGIÕES</strong></p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -457,7 +481,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-08-24 21:05:39 BRT
+Last updated 2016-09-09 00:12:32 BRT
 </div>
 </div>
 </body>
