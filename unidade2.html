@@ -5,8 +5,8 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<meta name="author" content="&lt;gustavolaires@hotmail.com&gt;">
-<title>Gustavo Laires Albuquerque Costa</title>
+<meta name="author" content="Gustavo Laires Albuquerque Costa &lt;gustavolaires@hotmail.com&gt;">
+<title>DCA0445: Porcessamento Digital de Imagens</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -420,90 +420,307 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Gustavo Laires Albuquerque Costa</h1>
+<h1>DCA0445: Porcessamento Digital de Imagens</h1>
 <div class="details">
-<span id="author" class="author">&lt;gustavolaires@hotmail.com&gt;</span><br>
+<span id="author" class="author">Gustavo Laires Albuquerque Costa &lt;gustavolaires@hotmail.com&gt;</span><br>
 </div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>Engenharia Elétrica</p>
-</div>
-</div>
-</div>
 <div class="sect1">
-<h2 id="_processamento_digital_de_imagens">Processamento Digital de Imagens</h2>
+<h2 id="_lista_de_exercícios_unidade_ii">Lista de Exercícios: Unidade II</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Essa Página tem como objetivo documentar os avanços realizados no curso de Processamento Digital de Imagens, apresentando os exercícios propóstos assim como os resultados alcançados.</p>
+<div class="sect2">
+<h3 id="_filtragem_no_domínio_da_frequência">Filtragem no domínio da frequência</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p><strong>Filtro Homomórfico</strong></p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Nesse projeto é requerido o desenvolvimento de um filtro Homomórfico, sendo esse um filtro para corrigir questões de iluminação em imagens. Para isso, o filtro realça as frequências mais altas enquanto atenua as frequências mais baixas. O perfil do filtro com a equação que o descreve pode ser visualizado na imagem abaixo:</p>
+</dd>
+</dl>
 </div>
-<div class="paragraph">
-<p>A página será ainda organizada segundo as unidades que dividem o programa do curso.</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="FiltroHomo.png" alt="FiltroHomo">
+</div>
+<div class="title">Figura 1: Perfil do filtro homomórfico e sua equação.</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Na equação, as variáveis &gamma;h, &gamma;l, D0 e c definem o comportamento do filtro. No programa desenvolvido essas variáveis irão possuir um valor inicial, porém poderão ser alteradas em tempo real através de slide bars.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>O programa que implementa o filtro foi desenvolvido com base em um código disponibilizado pelo professor Agostinho Brito Jr. O programa desenvolvido recebe como entrada uma imagem a qual é calculada o log de seus valores (afim de separar iluminação da reflectância), em seguida é calculada sua transformada discreta de Fourier. Os quadrantes são então trocados de modo que a origem fica no centro da image. A transformada é então multiplicada pelo espectro de fourier do filtro homomórfico para então calcular a transformada discreta inversa de Fourier. Os quadrantes são então destrocados e por fim é calculado ainda a exponencial da imagem para se obter a imagem final filtrada.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>A imagem utilizada como entrada foi:</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Original.png" alt="Original">
+</div>
+<div class="title">Figura 2: Imagem de entrada</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>O filtro utilizado possui como variáveis &gamma;h = 10, &gamma;l = 0,5, D0 = 7 e c = 1. A imagem do espectro de Fourier do filtro homomórfico utilizado pode ser visualizado abaixo:</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="EspectrodoFiltro.png" alt="EspectrodoFiltro">
+</div>
+<div class="title">Figura 3: Espectro do filtro Homomórfico</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Por fim, a imagem resultante da filtragem pode ser observada abaixo:</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Filtrada.png" alt="Filtrada">
+</div>
+<div class="title">Figura 4: Imagem Filtrada</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>Para trabalhar com as slide bars em tempo real foram criadas funções que são chamadas sempre que uma slide bar é alterada, dentro dessas funções é ainda chamada uma outra rotina que recalcula o filtro homomórfico com base nos novos valores das variáveis.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>O trecho do código responsável por isso pode ser visualizado em abaixo:</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="title">homomorfico.cpp</div>
+<div class="content">
+<pre>(...)
+// Filtro
+
+void make_filter(){
+
+  float d2;
+
+  // cria uma matriz temporária para criar as componentes real
+  // e imaginaria do filtro ideal
+  tmp = Mat(dft_M, dft_N, CV_32F);
+
+  // prepara o filtro
+  for(int i=0; i&lt;dft_M; i++){
+    for(int j=0; j&lt;dft_N; j++){
+
+      d2 = ((float)i - dft_M/2.0)*((float)i - dft_M/2.0) + ((float)j - dft_N/2.0)*((float)j - dft_N/2.0);
+      tmp.at&lt;float&gt; (i,j) = (dh-dl)*( 1.0-exp( -1.0*(float)c*(d2/(d0*d0)) ) ) + dl;
+      }
+    }
+
+  // cria a matriz com as componentes do filtro e junta
+  // ambas em uma matriz multicanal complexa
+  Mat comps[]= {tmp, tmp};
+  merge(comps, 2, filter);
+
+  imshow("Espectro de Fourier Filtro", tmp);
+  }
+
+// Chamada dos Slides
+
+void on_trackbar_dh(int, void*){
+
+  dh = dh_slider/10;
+  make_filter();
+
+  }
+
+void on_trackbar_dl(int, void*){
+
+  dl = dl_slider/10;
+  make_filter();
+
+  }
+
+void on_trackbar_d0(int, void*){
+
+  d0 = d0_slider/10;
+  make_filter();
+
+  }
+
+void on_trackbar_c(int, void*){
+
+  c = c_slider/10;
+  make_filter();
+
+  }
+(...)</pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>O código final pode ser obtido <a href="https://gustavolaires.github.io/homomorfico.cpp">aqui</a></p>
+</dd>
+</dl>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_unidades">Unidades:</h3>
+<h3 id="_canny_e_a_arte_com_pontilhismo">Canny e a arte com pontilhismo</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"></dt>
 <dd>
-<p><strong><a href="http://gustavolaires.github.io/unidade1">Unidade 1:</a></strong></p>
+<p><strong>Pontilhismo</strong></p>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"></dt>
 <dd>
-<p>Tema dos exercícios:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Manipulação de pixels em uma imagem</p>
-</li>
-<li>
-<p>Preenchimento de regiões</p>
-</li>
-<li>
-<p>Manipulação de histogramas</p>
-</li>
-<li>
-<p>Filtragem no domínio espacial I</p>
-</li>
-<li>
-<p>Filtragem no domínio espacial II</p>
-</li>
-</ul>
-</div>
+<p>Este exercício possui como proposta a simulação de uma técnica de pintura chamada pontilhismo. Para isso é utilizado uma imagem base a qual será aplicado o algorítmo de simulação da técnica, utilizando ainda o algorítmo de Canny (algorítmo de detecção de bordas) para evidenciar os contornos, melhorando significativamente os resultados.</p>
 </dd>
-</dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>O algorítmo de Canny segue os seguintes passos:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Filtragem com filtro Gaussiano para atenuação do ruído.</p>
+</li>
+<li>
+<p>Cálculo do gradiente dos pixels da imagem.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Classificação dos pixels nas categorias: Horizontal, Vertical, +45&deg;, -45&deg;.</p>
+</li>
+<li>
+<p>Comparação da magnitude do gradiente dos pixels com os de seus vizinhos na direção da etapa acima, se sua magnitude for a maior, ele é mantido na imagem de saída como pixel de borda, se não, é descartado.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Limiarização.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>O filtro tem dois parâmetros, Th e Tl, sendo Th entre 2 e 3 vezes Tl</p>
+</li>
+<li>
+<p>Se a magnitude do gradiente do pixel for maior que Th, esse é de borda forte e pertence a borda.</p>
+</li>
+<li>
+<p>Se ela for menor que Tl, o pixel é descartado.</p>
+</li>
+<li>
+<p>Se a magnitude estiver entre Th e Tl, então ele é de borda fraca. Nesse caso seus vizinhos de 8 serão investigados, pois se algum dos vizinhos for de borda forte, então ele também passa a ser de borda forte, caso contrário será descartado.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </dd>
 <dt class="hdlist1"></dt>
 <dd>
-<p><strong><a href="http://gustavolaires.github.io/unidade2">Unidade 2:</a></strong></p>
+<p>O projeto desenvolvido foi baseado nas referências do professor Agostinho Brito Jr.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>A imagem utilizada como entrada do programa foi:</p>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="pordosol.png" alt="pordosol">
+</div>
+<div class="title">Figura 5: Imagem de entrada</div>
+</div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1"></dt>
 <dd>
-<p>Tema dos exercícios:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Filtragem no domínio da frequência</p>
-</li>
-<li>
-<p>Canny e a arte com pontilhismo</p>
-</li>
-</ul>
-</div>
-</dd>
-</dl>
-</div>
+<p>A imagem de entrada é carrega em tons de cinza. A partir da imagem de entrada é construida uma segunda imagem colocando círculos em determinado píxels com o mesmo ton de cinza do pixel de mesma coordenada na imagem de entrada. Os pixels utilizados para colocar os círculos são igualmanete espaçados.</p>
 </dd>
 <dt class="hdlist1"></dt>
 <dd>
-<p><strong><em>Unidade 3</em></strong></p>
+<p>Na imagem abaixo é possível observar a imagem gerada nesse primeiro processo:</p>
 </dd>
 </dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="inter.png" alt="inter">
+</div>
+<div class="title">Figura 6: Imagem resultada do primeiro processo</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>A partir de então é calculado as bordas na imagem original com o algorítmo de Canny algumas vezes. Para cada vez que se usa o algorítmo de Canny é utilizado um limiar Tl maior. E toda vez que se obtém o resultado do algorítmo de Canny, são utilizados as bordas identificadas para fazer novos circulos, sendo esses circulos com o mesmo ton de cinza do pixel de coordenada correspondente na imagem de entrada. Tais circulos são realizados ainda com raio cada vez menor, a cada novo calculo de borda.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>É importante mencionar ainda que os circulos colocados nesse ponto do programa tem seus centros levemente deslocados de maneira aleatória, para evitar a padronização das posições, dando um aspecto mais artesanal a imagem resultante.</p>
+</dd>
+<dt class="hdlist1"></dt>
+<dd>
+<p>A imagem final obtida com o programa pode ser visualizada abaixo:</p>
+</dd>
+</dl>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="pontilhismo.png" alt="pontilhismo">
+</div>
+<div class="title">Figura 7: Imagem com técnica de pontilhismo</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"></dt>
+<dd>
+<p>O código final pode ser obtido <a href="https://gustavolaires.github.io/cp.cpp">aqui</a></p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+O material de apoio utilizado que permitiu o desenvolvimento aqui relato foi disponibilizado pelo professor Doutor Agostinho Brito Jr., podendo ser encontrado <a href="http://agostinhobritojr.github.io">aqui</a>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -511,7 +728,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-28 02:25:38 BRT
+Last updated 2016-10-28 02:23:25 BRT
 </div>
 </div>
 </body>
